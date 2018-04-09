@@ -33,8 +33,13 @@
     <script src="js/todo-controller.js"></script> 
     <script src="js/index.js"></script>
 -->
-<script src="js/libs/angular.js"></script>
-<script src="js/libs/lodash.js"></script>
+<!-- 将第三方类库打包在vendor.js文件中只需要引入vendor.js
+    <script src="js/libs/angular.js"></script>
+    <script src="js/libs/lodash.js"></script> 
+-->
+<!-- 使用了browserify-shim 来构建第三方类库后不需要引用 vendor.js 文件
+    <script src="js/vendor.js"></script> 
+--> 
 <script src="js/main.js"></script>
 </body>
 </html>

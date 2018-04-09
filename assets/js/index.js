@@ -14,6 +14,8 @@
         然后在index.js里 require('') 三个js即： .controller('TodosController',require('todos-controller.js')) ;
         最后 node 安装browserify，用 browserify js/todos-controller.js js/add-todo-controller.js js/todo-controller.js js/index.js -o js/main.js  此命令将四个js打包输出成main.js并在index.html中引用。
 */
+var angular =require('angular');
+var _=require('lodash');
 var todosController = require('../js/todos-controller.js');
 var addTodoController = require('../js/add-todo-controller.js');
 var todoController = require('../js/todo-controller.js');
