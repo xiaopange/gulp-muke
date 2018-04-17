@@ -7,6 +7,11 @@ var fs = require("fs"); //引入fs，fs是node的核心模块之一，不需要�
 var sequence = require("run-sequence"); //可以在一个task 中调用其它的 task。
 
 var watchify = require("watchify"); //引入watchify插件来自动化构建
+
+var uglify=require('gulp-uglify'); //引入gulp-uglify
+var source =require('vinyl-source-stream');
+var buffer = require("vinyl-buffer");
+
 gulp.task("default", function() {
   //定义任务用 task；default是gulp默认的任务
   //console.log('this is default task!')
@@ -87,6 +92,7 @@ gulp.task("default", function() {
 			.pipe(fs.createWriteStream("./js/vendor.js"));
 	}); 
 */
+/* 5
 gulp.task("mainjs", function() {
   var b = browserify({
     //把browserify初始化的结果赋值给变量b
@@ -95,12 +101,28 @@ gulp.task("mainjs", function() {
     packageCache: {},
     plugin: [watchify]
   })
-  b.on("update", function() {
-    //当browserify 初始化后会有各update事件，每当监听文件发生变化时都会触发update事件
-    bundle();
-  });
-  bundle();
-  function bundle() {
+  var bundle=function bundle() {
     b.bundle().pipe(fs.createWriteStream("js/main.js"));
-  }
-});
+  };
+	bundle();
+	b.on('update',bundle);
+}); 
+*/
+gulp.task("mainjs", function() {
+  var b = browserify({//把browserify初始化的结果赋值给变量b
+    entries: ["assets/js/index.js"], //所要编译的文件的入口。index.js中虽然依赖与很多文件但其是入口文件
+    cache: {},
+    packageCache: {},
+    plugin: [watchify]
+  });
+  var bundle = function bundle() {
+		b
+      .bundle()
+      .pipe(source("main2.js"))
+      .pipe(buffer())
+      .pipe(uglify())
+      .pipe(gulp.dest("./js/main2.js"));
+  };
+  bundle();
+  b.on("update", bundle);
+}); 
