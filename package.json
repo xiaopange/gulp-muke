@@ -888,7 +888,10 @@
   "devDependencies": {
     "browserify": "^16.2.0",
     "browserify-shim": "^3.8.14",
+    "coffeescript": "^2.2.4",
     "gulp": "^3.9.1",
+    "gulp-coffee": "^3.0.2",
+    "gulp-if": "^2.0.2",
     "lodash": "^1.3.1",
     "run-sequence": "^2.2.1",
     "watchify": "^3.11.0"
@@ -902,9 +905,9 @@
     "angular": "angular",
     "lodash": "_"
   },
-  "browser":{
-    "angular":"./bower_components/angular/angular.js",
-    "lodash":"./bower_components/lodash/dist/lodash.js"
+  "browser": {
+    "angular": "./bower_components/angular/angular.js",
+    "lodash": "./bower_components/lodash/dist/lodash.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
